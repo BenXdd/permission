@@ -24,6 +24,7 @@
     <mvc:resources location="/assets/" mapping="/assets/**"/>
     <mvc:resources location="/ztree/" mapping="/ztree/**"/>
 
+    <!-- lazy-init="false" 禁止懒加载, 启动时就加载-->
     <bean class="com.mmall.common.ApplicationContextHelper" lazy-init="false" />
 
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->

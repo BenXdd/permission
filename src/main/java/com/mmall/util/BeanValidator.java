@@ -21,9 +21,11 @@ public class BeanValidator {
 
     private static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
+
     public static <T> Map<String, String> validate(T t, Class... groups) {
         Validator validator = validatorFactory.getValidator();
         Set validateResult = validator.validate(t, groups);
+        //validateResult:当前校验没有错误信息时, 返回的是空值
         if (validateResult.isEmpty()) {
             return Collections.emptyMap();
         } else {

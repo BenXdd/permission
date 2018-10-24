@@ -8,9 +8,16 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 import org.codehaus.jackson.type.TypeReference;
 
+/**
+ * json转换工具
+ *
+ *  bean --> json
+ *  json --> bean
+ */
 @Slf4j
 public class JsonMapper {
 
+    // 核心转换器
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     static {

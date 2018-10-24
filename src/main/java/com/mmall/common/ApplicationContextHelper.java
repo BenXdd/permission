@@ -5,6 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+/**
+ * 获取application 上下文对象
+ * 要让该类被spring管理
+ */
 @Component("applicationContextHelper")
 public class ApplicationContextHelper implements ApplicationContextAware {
 

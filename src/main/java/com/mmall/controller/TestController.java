@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class TestController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/hello.json")
     @ResponseBody
     public JsonData hello() {
         log.info("hello");
-        // throw new PermissionException("test exception");
-       return JsonData.success("hello, permission");
+        //throw new PermissionException("test exception");
+        return JsonData.success("hello, permission");
     }
 
     @RequestMapping("/validate.json")

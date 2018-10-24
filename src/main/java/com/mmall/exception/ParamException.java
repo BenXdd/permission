@@ -1,5 +1,8 @@
 package com.mmall.exception;
 
+/**
+ * 自定义异常   overrird  RuntimeException的方法
+ */
 public class ParamException extends RuntimeException {
     public ParamException() {
         super();

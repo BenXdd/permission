@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-@Setter
+@Setter //lombok  自动生成get set方法
 public class JsonData {
 
-    private boolean ret;
+    private boolean ret; //返回的结果 true or false
 
     private String msg;
 
