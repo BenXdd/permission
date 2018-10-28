@@ -17,6 +17,7 @@ public class LevelUtil {
         if (StringUtils.isBlank(parentLevel)) {
             return ROOT;
         } else {
+            //不是顶级level
             return StringUtils.join(parentLevel, SEPARATOR, parentId);
         }
     }

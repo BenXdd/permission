@@ -203,16 +203,20 @@
         var userListTemplate = $('#userListTemplate').html();
         Mustache.parse(userListTemplate);
 
+        //页面刚开始就需要加载这个函数
         loadDeptTree();
 
         function loadDeptTree() {
             $.ajax({
                 url: "/sys/dept/tree.json",
                 success : function (result) {
+                    //返回的是true时
                     if (result.ret) {
                         deptList = result.data;
                         var rendered = Mustache.render(deptListTemplate, {deptList: result.data});
+                        //渲染首层
                         $("#deptList").html(rendered);
+                        //递归渲染
                         recursiveRenderDept(result.data);
                         bindDeptClick();
                     } else {
@@ -224,6 +228,7 @@
 
         // 递归渲染部门树
         function recursiveRenderDept(deptList) {
+            //deptList不为空, 并且deptList有数据
             if(deptList && deptList.length > 0) {
                 $(deptList).each(function (i, dept) {
                      deptMap[dept.id] = dept;

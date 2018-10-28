@@ -19,6 +19,7 @@ public class DeptParam {
     @Length(max = 15, min = 2, message = "部门名称长度需要在2-15个字之间")
     private String name;
 
+    //parentId不传, 默认为0, 在sql中就可以保证parentId不为空
     private Integer parentId = 0;
 
     @NotNull(message = "展示顺序不可以为空")
