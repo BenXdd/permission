@@ -26,7 +26,7 @@ public class PasswordUtil {
         StringBuffer stringBuffer = new StringBuffer();
         Random random = new Random(new Date().getTime());
         boolean flag = false;
-        int length = random.nextInt(3) + 8;
+        int length = random.nextInt(3) + 8; //密码 8位-10位
         for (int i = 0; i < length; i++) {
             if (flag) {
                 stringBuffer.append(num[random.nextInt(num.length)]);

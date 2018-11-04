@@ -12,11 +12,11 @@ public class MailUtil {
     public static boolean send(Mail mail) {
 
         // TODO
-        String from = "";
+        String from = "";  //实际发送的邮箱
         int port = 25;
-        String host = "";
-        String pass = "";
-        String nickname = "";
+        String host = "";  //地址
+        String pass = "";  //密码
+        String nickname = "";   //昵称
 
         HtmlEmail email = new HtmlEmail();
         try {
