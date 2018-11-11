@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 public class DeptLevelDto extends SysDept {
-    //子部门  集合
+    //下一个 (低一个级别) 的所有部门对象
     private List<DeptLevelDto> deptList = Lists.newArrayList();
 
     public static DeptLevelDto adapt(SysDept dept) {

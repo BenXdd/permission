@@ -151,6 +151,11 @@ public class SysTreeService {
         }
     }
 
+
+    /**
+     *  中心思想---> 往DetpLevelDto 里面的新参数(List) set下一个级别的对象
+     */
+
     /**
      * 取出原始数据 并封装
      * @return
@@ -196,7 +201,7 @@ public class SysTreeService {
         });
         //Collections.sort(rootList, deptSeqComparator);
 
-        // 递归生成树
+        // 递归生成树  rootList->第一级别       levelDeptMap-->所有的数据key--map  -->  level--deptleveldto
         transformDeptTree(rootList, LevelUtil.ROOT, levelDeptMap);
         return rootList;
     }
@@ -207,18 +212,18 @@ public class SysTreeService {
      *  level:0, 0, all 0->0.1,0.2
         level:0.1
         level:0.2
-     * @param deptLevelList 当前层级部门列表
+     * @param deptLevelList rootlist  第一层级的部门 每个第一层级开始向下遍历
      * @param level 当前部门的level
-     *              .
+     *
      *
      *
      * @param levelDeptMap 所有部门的map集合
      */
     public void transformDeptTree(List<DeptLevelDto> deptLevelList, String level, Multimap<String, DeptLevelDto> levelDeptMap) {
         for (int i = 0; i < deptLevelList.size(); i++) {
-            // 遍历该层的每个元素
+            // 遍历ROOT级别的每个元素
             DeptLevelDto deptLevelDto = deptLevelList.get(i);
-            // 处理当前层级的数据
+            // 处理当前层级的下一级别的数据   下一级别的level 是 当前部门的level.当前部门的id    0 - 0.1 -
             String nextLevel = LevelUtil.calculateLevel(level, deptLevelDto.getId());
             // 处理下一层   获得子部门的list集合
             List<DeptLevelDto> tempDeptList = (List<DeptLevelDto>) levelDeptMap.get(nextLevel);

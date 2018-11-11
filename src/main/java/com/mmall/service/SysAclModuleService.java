@@ -63,7 +63,7 @@ public class SysAclModuleService {
     }
 
     @Transactional
-    private void updateWithChild(SysAclModule before, SysAclModule after) {
+    public void updateWithChild(SysAclModule before, SysAclModule after) {
         String newLevelPrefix = after.getLevel();
         String oldLevelPrefix = before.getLevel();
         if (!after.getLevel().equals(before.getLevel())) {
