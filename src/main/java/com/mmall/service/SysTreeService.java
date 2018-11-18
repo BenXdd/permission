@@ -63,10 +63,12 @@ public class SysTreeService {
         // 3、当前系统所有权限点
         List<AclDto> aclDtoList = Lists.newArrayList();
 
+        //将其所有id构成一个set map()将当前的某一个对象映射成我们需要的一个值
         Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
         Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
 
         List<SysAcl> allAclList = sysAclMapper.getAll();
+        //遍历系统权限点  处理了系统中所有的权限点(是否可访问, 是否有权限处理) 筛选
         for (SysAcl acl : allAclList) {
             AclDto dto = AclDto.adapt(acl);
             if (userAclIdSet.contains(acl.getId())) {
@@ -85,10 +87,12 @@ public class SysTreeService {
             return Lists.newArrayList();
         }
         List<AclModuleLevelDto> aclModuleLevelList = aclModuleTree();
-
+        //aclDtoList 所有可用的数据放到Multimap
         Multimap<Integer, AclDto> moduleIdAclMap = ArrayListMultimap.create();
         for(AclDto acl : aclDtoList) {
+            // status是1的时候才是可用的
             if (acl.getStatus() == 1) {
+                // key-->权限点模块id   value-->权限点对象
                 moduleIdAclMap.put(acl.getAclModuleId(), acl);
             }
         }
@@ -96,6 +100,7 @@ public class SysTreeService {
         return aclModuleLevelList;
     }
 
+    //把权限点 绑定到权限模块上去
     public void bindAclsWithOrder(List<AclModuleLevelDto> aclModuleLevelList, Multimap<Integer, AclDto> moduleIdAclMap) {
         if (CollectionUtils.isEmpty(aclModuleLevelList)) {
             return;

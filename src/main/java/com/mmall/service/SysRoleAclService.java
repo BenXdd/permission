@@ -29,10 +29,13 @@ public class SysRoleAclService {
 
     public void changeRoleAcls(Integer roleId, List<Integer> aclIdList) {
         List<Integer> originAclIdList = sysRoleAclMapper.getAclIdListByRoleIdList(Lists.newArrayList(roleId));
+        //传进来的和以前的一样就不处理
         if (originAclIdList.size() == aclIdList.size()) {
             Set<Integer> originAclIdSet = Sets.newHashSet(originAclIdList);
             Set<Integer> aclIdSet = Sets.newHashSet(aclIdList);
+            //移除当前传进来的值
             originAclIdSet.removeAll(aclIdSet);
+            //若为空,说明传进来的值和以前的相同 直接return
             if (CollectionUtils.isEmpty(originAclIdSet)) {
                 return;
             }
@@ -41,6 +44,8 @@ public class SysRoleAclService {
         saveRoleAclLog(roleId, originAclIdList, aclIdList);
     }
 
+    //增加 或者是减少acl  新分配 或者是减少分配
+    //先删除旧权限 在添加新权限
     @Transactional
     public void updateRoleAcls(int roleId, List<Integer> aclIdList) {
         sysRoleAclMapper.deleteByRoleId(roleId);

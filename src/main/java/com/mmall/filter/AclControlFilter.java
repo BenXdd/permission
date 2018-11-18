@@ -56,6 +56,7 @@ public class AclControlFilter implements Filter {
             noAuth(request, response);
             return;
         }
+        //该类不被spring管理
         SysCoreService sysCoreService = ApplicationContextHelper.popBean(SysCoreService.class);
         if (!sysCoreService.hasUrlAcl(servletPath)) {
             log.info("{} visit {}, but no login, parameter:{}", JsonMapper.obj2String(sysUser), servletPath, JsonMapper.obj2String(requestMap));
